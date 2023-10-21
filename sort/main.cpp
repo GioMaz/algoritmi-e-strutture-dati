@@ -54,7 +54,7 @@ void merge_sort(int *a, int start, int end)
 {
     if (start < end) {
         int m = (start + end) / 2;
-        cout << start << " " << m << " " << end << endl;
+        // cout << start << " " << m << " " << end << endl;
         merge_sort(a, start, m);
         merge_sort(a, m+1, end);
         merge(a, start, m, end);
@@ -65,18 +65,12 @@ int main()
 {
     ifstream in("input.txt");
 
-    // int N;
-    // in >> N;
+    int N;
+    in >> N;
 
-    // int a[N];
-    // for (int i = 0; i < N; i++) {
-    //     in >> a[i];
-    // }
-
-    int N = 100000;
     int a[N];
     for (int i = 0; i < N; i++) {
-        a[i] = (rand() % N);
+        in >> a[i];
     }
 
     merge_sort(a, 0, N-1);
