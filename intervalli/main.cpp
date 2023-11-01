@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <array>
+#include <algorithm>
 
 using namespace std;
 
@@ -18,54 +19,6 @@ bool lessCouple(Couple a, Couple b) {
     }
 }
 
-void merge(Couple a[], int start, int m, int end)
-{
-    int i = start;
-    int j = m+1;
-    int k = 0;
-
-    Couple *c = new Couple[end-start+1];
-    while (i <= m && j <= end) {
-        if (lessCouple(a[i], a[j])) {
-            c[k] = a[i];
-            i++;
-        } else {
-            c[k] = a[j];
-            j++;
-        }
-        k++;
-    }
-
-    while (i <= m) {
-        c[k] = a[i];
-        i++;
-        k++;
-    }
-
-    while (j <= end) {
-        c[k] = a[j];
-        j++;
-        k++;
-    }
-
-    for (int i = 0; i < k; i++) {
-        a[start+i] = c[i];
-    }
-
-    delete[] c;
-}
-
-void merge_sort(Couple a[], int start, int end)
-{
-    if (start < end) {
-        int m = (start + end) / 2;
-        // cout << start << " " << m << " " << end << endl;
-        merge_sort(a, start, m);
-        merge_sort(a, m+1, end);
-        merge(a, start, m, end);
-    }
-}
-
 int main()
 {
     ifstream in("input.txt");
@@ -73,13 +26,14 @@ int main()
     int N;
     in >> N;
 
-    Couple a[N];
+    vector<Couple> a(N);
     for (int i = 0; i < N; i++) {
         in >> a[i].start;
         in >> a[i].end;
     }
 
-    merge_sort(a, 0, N-1);
+    // merge_sort(a, 0, N-1);
+    sort(a.begin(), a.end(), lessCouple);
 
     int N1 = 1;
     vector<Couple> v;
@@ -119,9 +73,9 @@ int main()
         }
     }
 
-    cout << r1 << endl;
-    cout << r2 << endl;
-    cout << max << endl;
+    // cout << r1 << endl;
+    // cout << r2 << endl;
+    // cout << max << endl;
 
     ofstream out("output.txt");
     if (r1 == r2 && r2 == 0) {
