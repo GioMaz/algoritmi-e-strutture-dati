@@ -1,23 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <array>
 #include <algorithm>
 
 using namespace std;
-
-typedef struct {
-    int first;
-    int end;
-} Couple;
-
-bool lessCouple(Couple a, Couple b) {
-    if (a.first == b.first) {
-        return a.end < b.end;
-    } else {
-        return a.first < b.first;
-    }
-}
 
 int main()
 {
