@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -61,5 +62,7 @@ int main()
         g[t2][t1] = t3;
     }
 
+    // Dijkstra è come una bfs solo che sceglie
+    // il percorso con costo inferiore
     dijkstra(g, 0);
 }
