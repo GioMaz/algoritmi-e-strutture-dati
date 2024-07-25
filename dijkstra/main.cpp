@@ -35,7 +35,7 @@ void dijkstra(vector<vector<int> > &g, int u)
         finish = true;
         for (int v = 0; v < g.size(); v++) {
             if (!visited[v] && g[u][v]
-                && dist[u] != INT_MAX
+                // && dist[u] != INT_MAX
                 && dist[u] + g[u][v] < dist[v]) {
                 dist[v] = dist[u] + g[u][v];
                 finish = false;
